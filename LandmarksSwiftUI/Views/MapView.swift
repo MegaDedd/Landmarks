@@ -10,15 +10,20 @@ import MapKit
 
 struct MapView: View {
     
+    var coordinate: CLLocationCoordinate2D
+    
     private var region: MKCoordinateRegion {
-        MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 53.195618, longitude: 50.093711), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        MKCoordinateRegion(
+            center: coordinate,
+            span: MKCoordinateSpan(
+                latitudeDelta: 0.2, longitudeDelta: 0.2))
     }
     
     var body: some View {
-        Map(initialPosition: .region(region))
+        Map(position: .constant(.region(region)))
     }
 }
 
 #Preview {
-    MapView()
+    MapView(coordinate: CLLocationCoordinate2DMake( 53.195618, 50.093711))
 }
